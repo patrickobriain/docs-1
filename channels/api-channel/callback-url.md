@@ -1,13 +1,15 @@
 ---
-path: '/docs/channels/api/callback-url'
-title: 'Callback URL and message payload'
+path: /docs/channels/api/callback-url
+title: Callback URL and message payload
 ---
+
+# callback-url
 
 When a new message is created in the API channel, you will get a POST request to the Callback URL specified while creating the API channel. The payload would look like this.
 
 **Event type**: `message_created`
 
-```json
+```javascript
 {
   "id": 0,
   "content": "This is a incoming message from API Channel",
@@ -43,3 +45,4 @@ When a new message is created in the API channel, you will get a POST request to
   "event": "message_created"
 }
 ```
+

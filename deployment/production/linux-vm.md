@@ -1,16 +1,15 @@
 ---
-path: "/docs/deployment/deploy-chatwoot-in-linux-vm"
-title: "Production deployment guide for Linux VM"
+path: /docs/deployment/deploy-chatwoot-in-linux-vm
+title: Production deployment guide for Linux VM
 ---
 
-### Deploying to Linux VM
+# linux-vm
+
+## Deploying to Linux VM
 
 This guide will help you to install **Chatwoot** on **Ubuntu 20.04 LTS / 20.10**. We have prepared a deployment script for you to run. Refer to the script and feel free to make changes accordingly to OS if you are on a non-Ubuntu system.
 
-<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="100%" height="443" type="text/html" src="https://www.youtube.com/embed/srolHJskK5Q?autoplay=0&fs=0&iv_load_policy=3&showinfo=1&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com"></iframe>
-
-
-### Steps to install
+## Steps to install
 
 1. Create a **setup.sh** file and copy the content from the above link or use the following commands.
 
@@ -20,20 +19,19 @@ chmod 755 setup.sh
 ./setup.sh master
 ```
 
-2. Execute the script, and it will take care of the initial **Chatwoot** setup.
+1. Execute the script, and it will take care of the initial **Chatwoot** setup.
+2. **Chatwoot** Installation will now be accessible at `http://{your_ip_address}:3000`
 
-3. **Chatwoot** Installation will now be accessible at `http://{your_ip_address}:3000`
-
-### Configuring The installation Domain
+## Configuring The installation Domain
 
 1. Create an `A` record for `chatwoot.mydomain.com` on your domain management system and point it towards the installation IP address
 2. Continue with the installation script by entering `yes` when prompted about domain setup.
-4. Enter your domain, and the script will take care of configuring Nginx and SSL
+3. Enter your domain, and the script will take care of configuring Nginx and SSL
 4. Your Chatwoot installation should be accessible from the `https://chatwoot.mydomain.com` now.
 
-### Configure the required environment variables
+## Configure the required environment variables
 
-For your Chatwoot installation to properly function, you would need to configure the essential environment variables like `FRONTEND_URL`, Mailer and a cloud storage config. Refer **[Environment variables](https://www.chatwoot.com/docs/environment-variables)** for the full list.
+For your Chatwoot installation to properly function, you would need to configure the essential environment variables like `FRONTEND_URL`, Mailer and a cloud storage config. Refer [**Environment variables**](https://www.chatwoot.com/docs/environment-variables) for the full list.
 
 1. Login as **Chatwoot** and edit the .env file.
 
@@ -45,15 +43,14 @@ cd chatwoot
 nano .env
 ```
 
-2. Refer **[Environment variables](https://www.chatwoot.com/docs/environment-variables)** and update the required variables. Save the `.env` file.
-
-3. Restart the **Chatwoot** server and enjoy using your self hosted Chatwoot.
+1. Refer [**Environment variables**](https://www.chatwoot.com/docs/environment-variables) and update the required variables. Save the `.env` file.
+2. Restart the **Chatwoot** server and enjoy using your self hosted Chatwoot.
 
 ```bash
 systemctl restart chatwoot.target
 ```
 
-### Upgrading to a newer version of Chatwoot
+## Upgrading to a newer version of Chatwoot
 
 Whenever a new version of Chatwoot is released, use the following steps to upgrade your instance.
 
@@ -88,12 +85,13 @@ cp /home/chatwoot/chatwoot/deployment/chatwoot.target /etc/systemd/system/chatwo
 systemctl restart chatwoot.target
 ```
 
-#### If precompile fails
+### If precompile fails
 
 If the asset precompilation step fails with `ActionView::Template::Error (Webpacker can't find application.css in /home/chatwoot/chatwoot/public/packs/manifest.json)` or if you face issues while restarting the server, try the following command and restart the server.
 
-```
+```text
 RAILS_ENV=production rake assets:clean assets:clobber assets:precompile
 ```
 
 This command would clear the existing compiled assets and would recompile all the assets. Read more about it [here](https://edgeguides.rubyonrails.org/command_line.html#bin-rails-assets)
+

@@ -1,27 +1,29 @@
 ---
-path: "/docs/webhooks"
-title: "Webhooks"
+path: /docs/webhooks
+title: Webhooks
 ---
+
+# add-webhooks-to-chatwoot
 
 Webhooks are HTTP callbacks which can be defined for every account. They are triggered by events like message creation in Chatwoot. You can create more than one webhook for an account. Currently webhooks support only `message_created` event
 
 **Step 1**. Click on Integrations link is settings sidebar. Click on "Configure" button.
 
-![integrations](./images/integrations.png)
+![integrations](../.gitbook/assets/integrations.png)
 
 **Step 2**. You will see the list of webhooks you have already added to the account.
 
-![configure](./images/configure.png)
+![configure](../.gitbook/assets/configure.png)
 
 **Step 3**. Click on the "Add new webhook", it will display a modal where you can input the URL to which the POST request should be sent.
 
-![add-a-webhook](./images/add-a-webhook.png)
+![add-a-webhook](../.gitbook/assets/add-a-webhook.png)
 
 Chatwoot currently supports webhooks for message creation only. Once a new message is created in the any of the inboxes of the account, it will send a POST request with the following payload to the configured URLs.
 
-### A sample webhook payload
+## A sample webhook payload
 
-```json
+```javascript
 {
 
   "event": "message_created", // The name of the event
@@ -62,11 +64,11 @@ Chatwoot currently supports webhooks for message creation only. Once a new messa
 }
 ```
 
-### Content Attributes
+## Content Attributes
 
-#### 1. Options
+### 1. Options
 
-```json
+```javascript
 {
   "items": [
     {
@@ -87,9 +89,9 @@ Chatwoot currently supports webhooks for message creation only. Once a new messa
 }
 ```
 
-#### 2. Form
+### 2. Form
 
-```json
+```javascript
 {
   "items": [
     {
@@ -108,9 +110,9 @@ Chatwoot currently supports webhooks for message creation only. Once a new messa
 }
 ```
 
-#### 3. Cards
+### 3. Cards
 
-```json
+```javascript
 {
   "items": [
     {
@@ -128,3 +130,4 @@ Chatwoot currently supports webhooks for message creation only. Once a new messa
   ],
 }
 ```
+

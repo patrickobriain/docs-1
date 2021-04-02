@@ -1,63 +1,65 @@
 ---
-path: "/docs/deployment/deploy-chatwoot-to-clevercloud"
-title: "Deploy Chatwoot to Clever Cloud"
+path: /docs/deployment/deploy-chatwoot-to-clevercloud
+title: Deploy Chatwoot to Clever Cloud
 ---
+
+# clevercloud
 
 Clever Cloud is a PaaS platform where you can deploy your applications with ease. To setup Chatwoot on Clever Cloud, you can follow the steps described below.
 
+## 1. Create CleverCloud application
 
-### 1. Create CleverCloud application
+* Login to Clever Cloud dashboard
+* Click on create an application
+* Select your deployment type \(&gt; 2GB recommended\)
+* Provide an app name and select the zone
 
-- Login to Clever Cloud dashboard
-- Click on create an application
-- Select your deployment type (> 2GB recommended)
-- Provide an app name and select the zone
-
-### 2. Select addons
+## 2. Select addons
 
 Chatwoot requires PostgreSQL and Redis to function properly. Select Postgres and Redis from CleverCloud addons.
 
-- Copy connection URI from Postgres Addon and set `DATABASE_URL` environment variable
-- Make sure you have set REDIS_URL
+* Copy connection URI from Postgres Addon and set `DATABASE_URL` environment variable
+* Make sure you have set REDIS\_URL
 
-### 3. Setup Clever cloud origin
+## 3. Setup Clever cloud origin
 
-- Clone Chatwoot project from Github
+* Clone Chatwoot project from Github
 
-```
+```text
 git clone git@github.com:chatwoot/chatwoot.git
 ```
 
-- Set Clever Cloud origin
-```
-git remote add clever git+ssh://git@<id>.clever-cloud.com/<app-name>.git
-```
+* Set Clever Cloud origin
 
-### 4. Setup build hooks
+  ```text
+  git remote add clever git+ssh://git@<id>.clever-cloud.com/<app-name>.git
+  ```
+
+## 4. Setup build hooks
 
 To install the dependencies, you have to setup builds hooks. Set the following in the environment variables of the application.
 
-```
+```text
 CC_POST_BUILD_HOOK="RAILS_ENV=production rails assets:precompile"
 CC_PRE_BUILD_HOOK="yarn install"
 CC_PRE_RUN_HOOK="rake db:chatwoot_prepare"
 ```
 
-### 5. Push the latest changes
+## 5. Push the latest changes
 
 Push the latest code from your local machine to Clever Cloud.
 
-```
+```text
 git push clever master
 ```
 
 Voila! After the deployment, you would be able to access the application.
 
-**Notes: **
+**Notes:** 
 
 Make sure you have the following environment variables configured in the application.
 
-```
+```text
 CC_POST_BUILD_HOOK="RAILS_ENV=production rails assets:precompile"
 CC_PRE_BUILD_HOOK="yarn install"
 CC_PRE_RUN_HOOK="rake db:chatwoot_prepare"
@@ -68,3 +70,4 @@ RAILS_ENV="production"
 REDIS_URL="<redis-addon-url>"
 SECRET_KEY_BASE="<long-secret-key>"
 ```
+

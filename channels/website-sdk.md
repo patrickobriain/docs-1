@@ -1,7 +1,9 @@
 ---
-path: '/docs/website-sdk'
-title: 'Sending Information into Chatwoot'
+path: /docs/website-sdk
+title: Sending Information into Chatwoot
 ---
+
+# website-sdk
 
 Additional information about a contact is always useful. The Chatwoot Website SDK ensures that you can send additional information that you have about the user.
 
@@ -9,7 +11,7 @@ If you have installed our code on your website, the SDK would expose `window.$ch
 
 In order to make sure that the SDK has been loaded completely, please make sure that you listen to `chatwoot:ready` event as follows:
 
-```js
+```javascript
 window.addEventListener('chatwoot:ready', function () {
   // Use window.$chatwoot here
   // ...
@@ -18,7 +20,7 @@ window.addEventListener('chatwoot:ready', function () {
 
 To hide the bubble, you can use the setting mentioned below. **Note**: If you use this, then you have to trigger the widget by yourself.
 
-```js
+```javascript
 window.chatwootSettings = {
   hideMessageBubble: false,
   position: 'left', // This can be left or right
@@ -29,43 +31,43 @@ window.chatwootSettings = {
 
 Chatwoot support 2 designs for for the widget
 
-1. Standard (default)
+1. Standard \(default\)
 
-![Standard-bubble](./images/sdk/standard-bubble.gif)
+![Standard-bubble](../.gitbook/assets/standard-bubble.gif)
 
-2. Expanded bubble
+1. Expanded bubble
 
-![Expanded-bubble](./images/sdk/expanded-bubble.gif)
+![Expanded-bubble](../.gitbook/assets/expanded-bubble.gif)
 
 If you are using expanded bubble, you can customize the text used in the bubble by setting `launcherTitle` parameter on chatwootSettings as described below.
 
-```js
+```javascript
 window.chatwootSettings = {
   type: 'expanded_bubble',
   launcherTitle: 'Chat with us'
 }
 ```
 
-### To enable popout window
+## To enable popout window
 
 Inorder to enable the popout window, add the following configuration to `chatwootSettings`. This option is disabled by default.
 
-```js
+```javascript
 window.chatwootSettings = {
   // ...Other Config
   showPopoutButton: true,
 }
 ```
 
-### To trigger widget without displaying bubble
+## To trigger widget without displaying bubble
 
-```js
+```javascript
 window.$chatwoot.toggle();
 ```
 
-### To set the user in the widget
+## To set the user in the widget
 
-```js
+```javascript
 window.$chatwoot.setUser('<unique-identifier-key-of-the-user>', {
   email: '<email-address-of-the-user@your-domain.com>',
   name: '<name-of-the-user>',
@@ -73,15 +75,15 @@ window.$chatwoot.setUser('<unique-identifier-key-of-the-user>', {
 });
 ```
 
-`setUser` accepts an identifier which can be a `user_id` in your database or any unique parameter which represents a user. You can pass email, name, avatar_url as params. Support for additional parameters is in progress.
+`setUser` accepts an identifier which can be a `user_id` in your database or any unique parameter which represents a user. You can pass email, name, avatar\_url as params. Support for additional parameters is in progress.
 
 Make sure that you reset the session when the user logs out of your app.
 
-### Identity validation
+## Identity validation
 
-To disallow impersonation and to keep the conversation with your customers private, we recommend setting up the identity validation in Chatwoot. Identity validation is enabled by generating an HMAC(hash based message authentication code) based on the `identifier` attribute, using SHA256. Along with the `identifier` you can pass `identifier_hash` also as shown below to make sure that the user is correct one.
+To disallow impersonation and to keep the conversation with your customers private, we recommend setting up the identity validation in Chatwoot. Identity validation is enabled by generating an HMAC\(hash based message authentication code\) based on the `identifier` attribute, using SHA256. Along with the `identifier` you can pass `identifier_hash` also as shown below to make sure that the user is correct one.
 
-```js
+```javascript
 window.$chatwoot.setUser(`<unique-identifier-key-of-the-user>`, {
   name: '', // Name of the user
   avatar_url: '', // Avatar URL
@@ -90,15 +92,15 @@ window.$chatwoot.setUser(`<unique-identifier-key-of-the-user>`, {
 })
 ```
 
-To generate HMAC, read [identity validation](/docs/website-sdk/identity-validation)
+To generate HMAC, read [identity validation](https://github.com/chatwoot/docs/tree/2d5c23bd385463751573600a0f937188aace738f/docs/website-sdk/identity-validation/README.md)
 
-### Set custom attributes
+## Set custom attributes
 
 Inorder to set additional information about the customer you can use customer attributes field.
 
 To set a custom attributes call `setCustomAttributes` as follows
 
-```js
+```javascript
 window.$chatwoot.setCustomAttributes({
   accountId: 1,
   pricingPlan: 'paid',
@@ -113,30 +115,31 @@ You can view these information in the sidepanel of a conversation.
 
 To delete a custom attribute, use `deleteCustomAttribute` as follows
 
-```js
+```javascript
 window.$chatwoot.deleteCustomAttribute('attribute-name');
 ```
 
-### To set language manually
+## To set language manually
 
-```js
+```javascript
 window.$chatwoot.setLocale('en');
 ```
 
 To set the language manually, use the `setLocale` function.
 
-### To set labels on the conversation
+## To set labels on the conversation
 
 Please note that the labels will be set on a conversation if the user has not started a conversation. In that case, the following items will not have any effect:
 
-```js
+```javascript
 window.$chatwoot.setLabel('support-ticket');
 
 window.$chatwoot.removeLabel('support-ticket');
 ```
 
-### To refresh the session (use this while you logout the user from your app)
+## To refresh the session \(use this while you logout the user from your app\)
 
-```js
+```javascript
 window.$chatwoot.reset();
 ```
+

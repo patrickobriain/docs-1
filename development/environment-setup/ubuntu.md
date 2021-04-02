@@ -1,7 +1,9 @@
 ---
-path: "/docs/installation-guide-ubuntu"
-title: "Ubuntu installation guide"
+path: /docs/installation-guide-ubuntu
+title: Ubuntu installation guide
 ---
+
+# ubuntu
 
 Open a terminal and run the following commands:
 
@@ -9,13 +11,13 @@ Open a terminal and run the following commands:
 sudo apt-get update
 ```
 
-### Install Git
+## Install Git
 
 ```bash
 sudo apt-get install git
 ```
 
-### Install RVM
+## Install RVM
 
 You need software-properties-common installed in order to add PPA repositories.
 
@@ -31,7 +33,7 @@ sudo apt-get install rvm
 
 Enable `Run command as a login shell` in terminal `Preferences`. Restart your computer.
 
-### Install Ruby
+## Install Ruby
 
 Chatwoot APIs are built on Ruby on Rails. You need to install ruby 2.7.2:
 
@@ -45,7 +47,7 @@ Use ruby 2.7.2 as default:
 rvm use 2.7.2 --default
 ```
 
-### Install Node.js
+## Install Node.js
 
 Install Node.js from NodeSource using the following commands:
 
@@ -54,7 +56,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-### Install yarn
+## Install yarn
 
 We use `yarn` as the package manager:
 
@@ -67,7 +69,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt-get update && sudo apt-get install yarn
 ```
 
-### Install postgres
+## Install postgres
 
 The database used in Chatwoot is PostgreSQL. Use the following commands to install postgres:
 
@@ -87,7 +89,7 @@ Install `libpg-dev` dependencies for ubuntu:
 sudo apt-get install libpq-dev
 ```
 
-### Install redis-server
+## Install redis-server
 
 Chatwoot uses Redis server in agent assignments and reporting. You need to install `redis-server`:
 
@@ -101,8 +103,9 @@ Next, enable Redis to start on system boot:
 sudo systemctl enable redis-server.service
 ```
 
-### Install imagemagick
+## Install imagemagick
 
 ```bash
 sudo apt-get install imagemagick
 ```
+

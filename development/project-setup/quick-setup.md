@@ -1,9 +1,11 @@
 ---
-path: "/docs/quick-setup"
-title: "Quick Setup"
+path: /docs/quick-setup
+title: Quick Setup
 ---
 
-### Install Ruby dependencies
+# quick-setup
+
+## Install Ruby dependencies
 
 Use the following command to install ruby dependencies.
 
@@ -11,9 +13,9 @@ Use the following command to install ruby dependencies.
 bundle
 ```
 
-If you face issue with pg gem, please refer to [Common Errors](/docs/common-errors#pg-gem-installation-error)
+If you face issue with pg gem, please refer to [Common Errors](https://github.com/chatwoot/docs/tree/2d5c23bd385463751573600a0f937188aace738f/docs/common-errors/README.md#pg-gem-installation-error)
 
-### Install JavaScript dependencies
+## Install JavaScript dependencies
 
 ```bash
 yarn
@@ -21,15 +23,15 @@ yarn
 
 This would install all required dependencies for Chatwoot application.
 
-### Setup environment variables.
+## Setup environment variables.
 
-```
+```text
 cp .env.example .env
 ```
 
-Please refer to [environment-variables](./environment-variables) to read on setting environment variables.
+Please refer to [environment-variables](https://github.com/chatwoot/docs/tree/2d5c23bd385463751573600a0f937188aace738f/development/project-setup/environment-variables/README.md) to read on setting environment variables.
 
-### Setup rails server
+## Setup rails server
 
 ```bash
 # run db migrations
@@ -40,7 +42,7 @@ bundle exec rake db:reset
 foreman start -f Procfile.dev
 ```
 
-### Login with credentials
+## Login with credentials
 
 ```bash
 http://localhost:3000
@@ -48,7 +50,7 @@ user name: john@acme.inc
 password: 123456
 ```
 
-### Docker for development
+## Docker for development
 
 The first time you start your development environment run the following two commands:
 
@@ -58,7 +60,8 @@ docker-compose up --build
 # prepare the database
 docker-compose exec server bundle exec rails db:prepare
 ```
-Then browse http://localhost:3000
+
+Then browse [http://localhost:3000](http://localhost:3000)
 
 ```bash
 # To stop your environment use Control+C (on Mac) CTRL+C (on Win) or
@@ -67,19 +70,19 @@ docker-compose down
 docker-compose up
 ```
 
-When you change the service’s Dockerfile or the contents of the build directory, run stop then build. (For example after modifying package.json or Gemfile)
+When you change the service’s Dockerfile or the contents of the build directory, run stop then build. \(For example after modifying package.json or Gemfile\)
 
 ```bash
 docker-compose stop
 docker-compose build
 ```
 
-
 The docker-compose environment consists of:
-- chatwoot server
-- postgres
-- redis
-- webpacker-dev-server
+
+* chatwoot server
+* postgres
+* redis
+* webpacker-dev-server
 
 If in case you encounter a seeding issue or you want reset the database you can do it using the following command :
 
@@ -89,21 +92,18 @@ docker-compose run -rm server bundle exec rake db:reset
 
 This command essentially runs postgres and redis containers and then run the rake command inside the chatwoot server container.
 
-### Running Cypress Tests
+## Running Cypress Tests
 
-Refer the docs to learn how to write cypress specs
-https://github.com/shakacode/cypress-on-rails
-https://docs.cypress.io/guides/overview/why-cypress.html
+Refer the docs to learn how to write cypress specs [https://github.com/shakacode/cypress-on-rails](https://github.com/shakacode/cypress-on-rails) [https://docs.cypress.io/guides/overview/why-cypress.html](https://docs.cypress.io/guides/overview/why-cypress.html)
 
-```
+```text
 # in terminal tab1
 overmind start -f Procfile.test
 # in terminal tab2
 yarn cypress open --project ./test
 ```
 
-
-### Debugging Docker for production
+## Debugging Docker for production
 
 You can use our official Docker image from [https://hub.docker.com/r/chatwoot/chatwoot](https://hub.docker.com/r/chatwoot/chatwoot)
 
@@ -117,6 +117,7 @@ You can create an image yourselves by running the following command on the root 
 docker-compose -f docker-compose.production.yaml build
 ```
 
-This will build the image which you can depoy in Kubernetes (GCP, Openshift, AWS, Azure or anywhere), Amazon ECS or Docker Swarm. You can tag this image and push this image to docker registry of your choice.
+This will build the image which you can depoy in Kubernetes \(GCP, Openshift, AWS, Azure or anywhere\), Amazon ECS or Docker Swarm. You can tag this image and push this image to docker registry of your choice.
 
 Remember to make the required environment variables available during the deployment.
+

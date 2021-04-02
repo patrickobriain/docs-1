@@ -1,46 +1,50 @@
 ---
-path: "/docs/deployment/deploy-chatwoot-with-docker"
-title: "Docker Chatwoot Production deployment guide"
+path: /docs/deployment/deploy-chatwoot-with-docker
+title: Docker Chatwoot Production deployment guide
 ---
 
+# docker
 
 ## Steps to deploy Chatwoot using docker-compose
 
-1) Install Docker on your VM
-```
+1\) Install Docker on your VM
+
+```text
 # example in ubuntu
 apt-get update
 apt install docker-compose
 ```
 
-2) Download the required files
-```
+2\) Download the required files
+
+```text
 # Download the env file template
 wget -O .env https://raw.githubusercontent.com/chatwoot/chatwoot/develop/.env.example
 # Download the Docker compose template
 wget -O docker-compose.yml https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml
 ```
 
-3) Tweak the `.env` and `docker-compose.yml` according to your preferences. Refer to the available [environment variables](https://www.chatwoot.com/docs/environment-variables). You could also remove the dependant services like `Postgres`, `Redis` etc., in favor of managed services configured via environment variables.
+3\) Tweak the `.env` and `docker-compose.yml` according to your preferences. Refer to the available [environment variables](https://www.chatwoot.com/docs/environment-variables). You could also remove the dependant services like `Postgres`, `Redis` etc., in favor of managed services configured via environment variables.
 
 > Update `POSTGRES_PASSWORD` in both `docker-compose.yml` and `.env`
 
-4) Prepare the database by running the migrations.
-```
+4\) Prepare the database by running the migrations.
+
+```text
 docker-compose run --rm rails bundle exec rails db:chatwoot_prepare
 ```
 
-5) Get the service up and running.
-```
+5\) Get the service up and running.
+
+```text
 docker-compose up -d
 ```
 
-6) Your Chatwoot installation should be accessible with `http://{your_ip_address}:3000`
+6\) Your Chatwoot installation should be accessible with `http://{your_ip_address}:3000`
 
 ### Additional Steps
 
-1) Have an `Nginx` web server acting as a reverse proxy for Chatwoot installation. So that you can access Chatwoot from `https://chat.yourdomain.com`
-2) Run `docker-compose run --rm rails bundle exec rails db:chatwoot_prepare` whenever you decide to update the Chatwoot images to handle the migrations.
+1\) Have an `Nginx` web server acting as a reverse proxy for Chatwoot installation. So that you can access Chatwoot from `https://chat.yourdomain.com` 2\) Run `docker-compose run --rm rails bundle exec rails db:chatwoot_prepare` whenever you decide to update the Chatwoot images to handle the migrations.
 
 #### Configure Nginx and **Let's Encrypt**
 
@@ -52,7 +56,7 @@ cd /etc/nginx/sites-enabled
 nano yourdomain.com.conf
 ```
 
-2. Use the following Nginx config after replacing the `yourdomain.com` in `server_name` .
+1. Use the following Nginx config after replacing the `yourdomain.com` in `server_name` .
 
 ```bash
 server {
@@ -93,14 +97,14 @@ server {
 }
 ```
 
-3. Verify and reload your Nginx config by running the following command.
+1. Verify and reload your Nginx config by running the following command.
 
 ```bash
 nginx -t
 systemctl reload nginx
 ```
 
-4. Run **Let's Encrypt** to configure **SSL certificate**.
+1. Run **Let's Encrypt** to configure **SSL certificate**.
 
 ```bash
 apt  install certbot
@@ -109,9 +113,7 @@ mkdir -p /var/www/ssl-proof/chatwoot/.well-known
 certbot --webroot -w /var/www/ssl-proof/chatwoot/ -d yourdomain.com -i nginx
 ```
 
-5. Your Chatwoot installation should be accessible from the `https://yourdomain.com` now.
-
----
+1. Your Chatwoot installation should be accessible from the `https://yourdomain.com` now.
 
 ## Steps to build images yourself
 
@@ -119,7 +121,7 @@ We publish our base images to the Docker hub. You should be able to build your C
 
 ### Web
 
-```
+```text
 FROM chatwoot/chatwoot:latest
 RUN chmod +x docker/entrypoints/rails.sh
 ENTRYPOINT ["docker/entrypoints/rails.sh"]
@@ -128,7 +130,7 @@ CMD bundle exec bundle exec rails s -b 0.0.0.0 -p 3000
 
 ### worker
 
-```
+```text
 FROM chatwoot/chatwoot:latest
 RUN chmod +x docker/entrypoints/rails.sh
 ENTRYPOINT ["docker/entrypoints/rails.sh"]
@@ -144,3 +146,4 @@ To set up the database for the first time, you must run `rails db:chatwoot_prepa
 ### Upgrading
 
 Update the images using the latest image from chatwoot. Run the `rails db:chatwoot_prepare` option after accessing the console from one of the containers running the latest image.
+

@@ -1,39 +1,37 @@
 ---
-path: '/docs/channels/live-chat/webflow-integration'
-title: 'Integrating Chatwoot with Webflow website'
+path: /docs/channels/live-chat/webflow-integration
+title: Integrating Chatwoot with Webflow website
 ---
+
+# webflow-integration
 
 Add Chatwoot live chat widget to talk to your Webflow website visitors in realtime. Chatwoot helps you to chat with your visitors and provide expectional support in realtime. To use Chatwoot as your website live chat, follow the steps described below.
 
-### 1. Create a website inbox in Chatwoot
+## 1. Create a website inbox in Chatwoot
 
-Refer to [Website Channel](/docs/channels/website) document.
+Refer to [Website Channel](https://github.com/chatwoot/docs/tree/2d5c23bd385463751573600a0f937188aace738f/docs/channels/website/README.md) document.
 
-### 2. Install the generated script in Webflow
-<br />
+## 2. Install the generated script in Webflow
 
-#### Go to website settings
+### Go to website settings
 
 Login to your Webflow account and select your website. Select Settings
 
-![select-website](./images/webflow/select-website.jpg)
+![select-website](../../.gitbook/assets/select-website.jpg)
 
-<br />
+### Paste the script in Footer Code in Webflow
 
-#### Paste the script in Footer Code in Webflow
+Go to **Custom Code** -&gt; **Footer Code**. Paste the script in Footer Code section and save the changes.
 
-Go to **Custom Code** -> **Footer Code**. Paste the script in Footer Code section and save the changes.
+![custom-html-css](../../.gitbook/assets/custom-html-css.jpg)
 
-![custom-html-css](./images/webflow/custom-html-css.jpg)
+## 3. Publish the changes
 
-### 3. Publish the changes
+Click on Publish -&gt; Select the website -&gt; Publish to selected domains.
 
-Click on Publish -> Select the website -> Publish to selected domains.
-
-![publish-the-website](./images/webflow/publish-the-website.png)
-
+![publish-the-website](../../.gitbook/assets/publish-the-website.png)
 
 **Voila!** You have successfully integrated Chatwoot with Webflow.
 
+![active-chatwoot-webflow-integration](../../.gitbook/assets/active-chatwoot-webflow-integration.jpg)
 
-![active-chatwoot-webflow-integration](./images/webflow/active-chatwoot-webflow-integration.jpg)
