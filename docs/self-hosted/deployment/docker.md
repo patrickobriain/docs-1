@@ -28,7 +28,7 @@ wget -O docker-compose.yml https://raw.githubusercontent.com/chatwoot/chatwoot/d
 # update redis and postgres passwords
 nano .env
 # update docker-compose.yml same postgres pass
-nano docker-compose.yml
+nano docker-compose.yaml
 ```
 
 4) Prepare the database by running the migrations.
